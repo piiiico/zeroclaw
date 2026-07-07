@@ -45,6 +45,9 @@ pub fn windows_std_cmd_shell_command(command: &str) -> std::process::Command {
 /// Native runtime — full access, runs on Mac/Linux/Windows/Docker/Raspberry Pi
 pub struct NativeRuntime {
     /// Shell binary to invoke for command execution (e.g. `"sh"`, `"bash"`).
+    /// On Windows, `build_shell_command` always uses `cmd.exe` regardless of
+    /// this field, so `shell` is intentionally unused in that compilation.
+    #[cfg_attr(target_os = "windows", allow(dead_code))]
     shell: String,
 }
 
